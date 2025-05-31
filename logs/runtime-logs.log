@@ -1,0 +1,78 @@
+[2025-05-29 18:21:02] ENV File Missing
+[2025-05-29 18:21:02] ENV File Missing
+[2025-05-29 19:55:05] ERROR [2]: Undefined array key "type_key" in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\settings\static-types.php on line 65
+[2025-05-29 20:04:01] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\settings\static-types.php on line 49
+[2025-05-29 20:04:49] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\settings\static-types.php on line 49
+[2025-05-29 21:05:35] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\settings\static-types.php on line 49
+[2025-05-29 21:06:01] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\settings\static-types.php on line 49
+[2025-05-29 21:07:49] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\settings\static-types.php on line 49
+[2025-05-29 21:07:51] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\settings\static-types.php on line 49
+[2025-05-30 05:28:40] UNCAUGHT EXCEPTION: syntax error, unexpected token ";"
+[2025-05-30 05:29:14] UNCAUGHT EXCEPTION: syntax error, unexpected token ";"
+[2025-05-30 05:29:36] ERROR [2]: Undefined variable $return_url in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\auth\login-action.php on line 34
+[2025-05-30 05:30:54] ERROR [2]: Undefined array key "return_url" in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\auth\login-action.php on line 4
+[2025-05-30 05:52:36] UNCAUGHT EXCEPTION: DB::con(): Return value must be of type DB, null returned
+[2025-05-30 06:04:05] ERROR [2]: Undefined variable $user in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\entries\users\index.php on line 62
+[2025-05-30 06:04:16] ERROR [2]: Undefined variable $user in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\entries\users\index.php on line 62
+[2025-05-30 06:17:36] TESTing
+[2025-05-30 06:17:37] TESTing
+[2025-05-30 06:18:51] TESTing
+[2025-05-30 06:18:51] TESTing
+[2025-05-30 07:38:52] ERROR [2]: Undefined variable $currentColorScheme in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\settings\theme\index.php on line 33
+[2025-05-30 07:39:03] ERROR [2]: Undefined variable $currentColorScheme in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\settings\theme\index.php on line 33
+[2025-05-30 08:20:47] UNCAUGHT EXCEPTION: array_pop(): Argument #1 ($array) cannot be passed by reference
+[2025-05-30 08:41:24] ERROR [2]: Undefined variable $type in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\entries\users\index.php on line 66
+[2025-05-30 08:42:28] ERROR [2]: Undefined array key "value1" in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\public\entries\users\index.php on line 68
+[2025-05-30 09:26:19] UNCAUGHT EXCEPTION: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 193
+[2025-05-30 09:27:15] UNCAUGHT EXCEPTION: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 193
+[2025-05-30 09:28:29] UNCAUGHT EXCEPTION: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 193
+[2025-05-30 09:28:49] UNCAUGHT EXCEPTION: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 193
+[2025-05-30 09:30:00] UNCAUGHT EXCEPTION: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1 in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\includes\classes.php on line 193
+[2025-05-30 09:32:41] UNCAUGHT EXCEPTION: Call to undefined method DB::query() in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\includes\functions.php on line 142
+[2025-05-30 09:33:08] UNCAUGHT EXCEPTION: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1 in E:\InstalledSoftwares\xampp\htdocs\dgt-ac\includes\classes.php on line 193
+[2025-05-30 19:15:58] ERROR [2]: Undefined variable $PGNTD in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 26
+[2025-05-30 19:18:02] UNCAUGHT EXCEPTION: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '25' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 193
+[2025-05-30 19:18:22] ERROR [2]: Undefined variable $PGNTD in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 27
+[2025-05-30 19:50:57] ERROR [2]: Undefined array key "subpage" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 465
+[2025-05-30 20:02:46] UNCAUGHT EXCEPTION: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Purchases' for key 'label' in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 136
+[2025-05-30 20:20:10] UNCAUGHT EXCEPTION: Call to undefined method App::parentPath() in E:\InstalledSoftwares\xampp\htdocs\includes\functions.php on line 94
+[2025-05-31 03:48:03] UNCAUGHT EXCEPTION: Cannot access offset of type string on string in E:\InstalledSoftwares\xampp\htdocs\public\settings\theme\action.php on line 6
+[2025-05-31 03:48:23] UNCAUGHT EXCEPTION: Cannot access offset of type string on string in E:\InstalledSoftwares\xampp\htdocs\public\settings\theme\action.php on line 6
+[2025-05-31 04:27:09] ERROR [2]: Undefined array key "role" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 564
+[2025-05-31 04:28:20] ERROR [2]: Undefined array key "role" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 557
+[2025-05-31 04:29:04] ERROR [2]: Undefined array key "role" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 558
+[2025-05-31 04:29:36] ERROR [2]: Undefined array key "role" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 558
+[2025-05-31 04:42:38] UNCAUGHT EXCEPTION: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '2, 25' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202
+[2025-05-31 05:23:20] ERROR [2]: Undefined variable $PGNTD in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 54
+[2025-05-31 05:24:19] UNCAUGHT EXCEPTION: Unsupported operand types: string + int in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 37
+[2025-05-31 05:24:43] ERROR [2]: Undefined array key "created_at" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 38
+[2025-05-31 05:25:08] ERROR [2]: Undefined array key "created_at" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 39
+[2025-05-31 05:35:22] ERROR [2]: Undefined array key "page" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 113
+[2025-05-31 05:52:11] ERROR [2]: Undefined array key "page" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 167
+[2025-05-31 17:43:22] ERROR [2]: Undefined array key 0 in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 242
+[2025-05-31 17:43:37] ERROR [2]: Undefined array key 0 in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 242
+[2025-05-31 18:57:53] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(SELECT * FROM users ORDER BY created_at DESC) LIMIT 0, 11' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 18:59:22] ERROR [2]: Undefined variable $PGNTD in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 23
+[2025-05-31 19:01:23] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:05:04] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:11:24] ERROR [2]: Undefined variable $toggleURL in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 160
+[2025-05-31 19:16:04] ERROR [2]: Undefined variable $type in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 253
+[2025-05-31 19:16:16] ERROR [2]: Undefined array key "value1" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 254
+[2025-05-31 19:16:29] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:30:32] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '='sdsd' ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:34:35] UNCAUGHT EXCEPTION: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dgt.static_type' doesn't exist in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202
+[2025-05-31 19:35:02] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '='admin'name='Country'role='' ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:41:28] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:42:07] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:42:13] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:43:36] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:43:47] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:46:55] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:49:44] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:50:09] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:50:53] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY created_at DESC) AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:53:50] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 308
+[2025-05-31 19:54:12] UNCAUGHT EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') AS subquery' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 309
+[2025-05-31 20:02:10] UNCAUGHT EXCEPTION: Unmatched '}' in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 281
+[2025-05-31 20:20:25] UNCAUGHT EXCEPTION: Unmatched '}' in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 305
+[2025-05-31 20:53:35] UNCAUGHT EXCEPTION: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT slug FROM navbar' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202

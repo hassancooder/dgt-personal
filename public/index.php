@@ -1,0 +1,1 @@
+<?php doc::setTitle("Dashboard"); ?>
