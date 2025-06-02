@@ -44,6 +44,9 @@ if (App::currentUser()) {
             } ?>
             --font-family-display: "Barlow", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
+        .myinput {
+            @apply w-full border border-textSecondary/30 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:!ring-accent transition rounded-lg;
+        }
         * {
             font-family: "Barlow", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
@@ -51,6 +54,9 @@ if (App::currentUser()) {
       margin: 0;
       height: 100vh;
       overflow: hidden; /* Prevent body scroll */
+    }
+    body, html{
+        scroll-behavior: smooth;
     }
     #content-area {
       height: calc(100vh - 64px); /* Adjust for topbar height */

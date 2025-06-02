@@ -76,3 +76,48 @@
 [2025-05-31 20:02:10] UNCAUGHT EXCEPTION: Unmatched '}' in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 281
 [2025-05-31 20:20:25] UNCAUGHT EXCEPTION: Unmatched '}' in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 305
 [2025-05-31 20:53:35] UNCAUGHT EXCEPTION: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT slug FROM navbar' at line 1 in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202
+[2025-05-31 22:03:15] ERROR [2]: Undefined variable $page_title in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 3
+[2025-05-31 22:03:36] ERROR [2]: Undefined variable $back_page_url in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 5
+[2025-05-31 22:04:03] ERROR [2]: Undefined variable $img_path in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 18
+[2025-05-31 22:04:15] ERROR [2]: Undefined variable $id in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 21
+[2025-05-31 22:04:24] UNCAUGHT EXCEPTION: syntax error, unexpected token ";" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 21
+[2025-05-31 22:04:33] ERROR [2]: Undefined variable $id in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 24
+[2025-05-31 22:04:54] ERROR [2]: Undefined variable $type in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 42
+[2025-05-31 22:07:41] UNCAUGHT EXCEPTION: Call to undefined function fetch() in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 61
+[2025-06-01 11:28:12] UNCAUGHT EXCEPTION: Call to undefined function fetch() in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 61
+[2025-06-01 11:35:04] ERROR [2]: Undefined variable $page_title in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 4
+[2025-06-01 14:34:38] ERROR [2]: Undefined array key "role" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 34
+[2025-06-01 14:34:56] ERROR [2]: Undefined array key "role" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 34
+[2025-06-01 14:40:57] ERROR [2]: Undefined array key "image" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 15
+[2025-06-01 14:40:58] ERROR [2]: Undefined array key "image" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 15
+[2025-06-01 14:41:30] UNCAUGHT EXCEPTION: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dgt.branches' doesn't exist in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202
+[2025-06-01 14:41:34] UNCAUGHT EXCEPTION: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dgt.branches' doesn't exist in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202
+[2025-06-01 14:43:27] ERROR [2]: Undefined array key "name" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 59
+[2025-06-01 14:43:30] ERROR [2]: Undefined array key "name" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 59
+[2025-06-01 14:48:38] UNCAUGHT EXCEPTION: syntax error, unexpected identifier "imagePreview", expecting "]" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 156
+[2025-06-01 15:47:45] UNCAUGHT EXCEPTION: Call to undefined function request() in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 8
+[2025-06-01 15:47:45] UNCAUGHT EXCEPTION: Call to undefined function request() in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 8
+[2025-06-01 15:47:51] UNCAUGHT EXCEPTION: Call to undefined function request() in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 8
+[2025-06-01 16:35:49] UNCAUGHT EXCEPTION: in_array(): Argument #2 ($haystack) must be of type array, string given in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 59
+[2025-06-01 16:36:34] UNCAUGHT EXCEPTION: in_array(): Argument #2 ($haystack) must be of type array, string given in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 62
+[2025-06-01 16:37:31] UNCAUGHT EXCEPTION: in_array(): Argument #2 ($haystack) must be of type array, string given in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 62
+[2025-06-01 16:39:19] UNCAUGHT EXCEPTION: in_array(): Argument #2 ($haystack) must be of type array, string given in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 61
+[2025-06-01 17:31:59] ERROR [2]: Undefined variable $update in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\action.php on line 33
+[2025-06-01 17:41:30] UNCAUGHT EXCEPTION: count(): Argument #1 ($value) must be of type Countable|array, string given in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 491
+[2025-06-01 17:42:41] ERROR [2]: Array to string conversion in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 157
+[2025-06-01 17:44:41] ERROR [2]: Array to string conversion in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 157
+[2025-06-01 17:46:09] ERROR [2]: Array to string conversion in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 157
+[2025-06-01 17:53:19] ERROR [2]: Undefined array key 0 in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\action.php on line 33
+[2025-06-01 17:53:48] ERROR [2]: Undefined array key 0 in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\action.php on line 33
+[2025-06-01 17:56:19] ERROR [2]: Undefined variable $routes in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\manage.php on line 72
+[2025-06-01 18:31:07] ERROR [2]: Array to string conversion in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 157
+[2025-06-01 18:32:34] ERROR [2]: Undefined variable $result in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\action.php on line 74
+[2025-06-01 18:32:55] ERROR [2]: Undefined variable $result in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\action.php on line 75
+[2025-06-01 18:34:00] ERROR [2]: Array to string conversion in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 157
+[2025-06-01 18:34:21] ERROR [2]: Array to string conversion in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 157
+[2025-06-01 19:00:50] ERROR [2]: Array to string conversion in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 157
+[2025-06-01 19:09:10] UNCAUGHT EXCEPTION: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'admin' for key 'username' in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 139
+[2025-06-01 19:28:42] ERROR [2]: Array to string conversion in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 157
+[2025-06-02 07:36:17] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\view.php on line 62
+[2025-06-02 07:36:32] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\view.php on line 62
+[2025-06-02 08:53:16] UNCAUGHT EXCEPTION: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'admin' for key 'username' in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 139

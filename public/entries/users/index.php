@@ -46,7 +46,7 @@ if (($_GET['action'] ?? '') === 'export') {
                         name="name"
                         value="<?= htmlspecialchars($entries['filters']['name'] ?? '') ?>"
                         placeholder="Search Name..."
-                        class="pl-10 pr-2 py-2 border border-textSecondary/30 rounded-lg text-sm focus:outline-none focus:ring-2 focus:!ring-accent transition w-52">
+                        class="pl-10 pr-2 py-2 border border-textSecondary/30 rounded-lg text-sm focus:outline-none focus:ring-1 focus:!ring-accent transition w-52">
                     <i class="ri-search-2-line text-lg text-textSecondary/80 absolute left-3 top-1.5"></i>
                 </form>
 
@@ -91,7 +91,7 @@ if (($_GET['action'] ?? '') === 'export') {
                                         name="name"
                                         value="<?= htmlspecialchars($entries['filters']['name'] ?? '') ?>"
                                         placeholder="Enter name"
-                                        class="w-full border border-textSecondary/30 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:!ring-accent transition">
+                                        class="w-full border border-textSecondary/30 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:!ring-accent transition">
                                 </div>
 
                                 <!-- Username Filter -->
@@ -103,7 +103,7 @@ if (($_GET['action'] ?? '') === 'export') {
                                         name="username"
                                         value="<?= htmlspecialchars($entries['filters']['username'] ?? '') ?>"
                                         placeholder="Enter username"
-                                        class="w-full border border-textSecondary/30 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:!ring-accent transition">
+                                        class="w-full border border-textSecondary/30 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:!ring-accent transition">
                                 </div>
 
                                 <!-- Role Filter -->
@@ -112,7 +112,7 @@ if (($_GET['action'] ?? '') === 'export') {
                                     <select
                                         id="role"
                                         name="role"
-                                        class="w-full border border-textSecondary/30 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:!ring-accent transition">
+                                        class="w-full border border-textSecondary/30 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:!ring-accent transition">
                                         <option value="">All Roles</option>
                                         <?php
                                         $roles = DB::fetch('static_types', ['type_for' => 'role'], 'all');
@@ -134,7 +134,7 @@ if (($_GET['action'] ?? '') === 'export') {
                                         id="date"
                                         name="date"
                                         value="<?= htmlspecialchars($entries['filters']['date'] ?? '') ?>"
-                                        class="w-full border border-textSecondary/30 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:!ring-accent transition">
+                                        class="w-full border border-textSecondary/30 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:!ring-accent transition">
                                 </div>
 
                                 <!-- Action Buttons -->
@@ -158,7 +158,7 @@ if (($_GET['action'] ?? '') === 'export') {
                 </div>
 
                 <!-- Add Button -->
-                <a href="<?= App::currentPath() . '?action=add' ?>" class="!bg-accent !text-bg rounded-lg hover:bg-accent/90 transition text-sm px-3 py-1 font-medium">
+                <a href="<?= App::currentPath() . '/manage?action=add-new' ?>" class="!bg-accent !text-bg rounded-lg hover:bg-accent/90 transition text-sm px-3 py-1 font-medium">
                     <i class="ri-add-line text-lg !text-bg mr-1"></i> Add
                 </a>
 
@@ -203,7 +203,7 @@ if (($_GET['action'] ?? '') === 'export') {
                         <select
                             name="entries_per_page"
                             id="entries_per_page"
-                            class="px-4 py-2 border border-textSecondary/30 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                            class="px-4 py-2 border border-textSecondary/30 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-accent"
                             onchange="this.form.submit()">
                             <?php
                             $EPP = DB::fetch('static_types', ['type_for' => 'entries_per_page'], 'all');
@@ -267,14 +267,14 @@ if (($_GET['action'] ?? '') === 'export') {
                 <tbody>
                     <?php if (count($entries['entries']) > 0): ?>
                         <?php foreach ($entries['entries'] as $index => $user): ?>
-                            <tr class="hover:bg-gray-50 transition cursor-pointer" onclick="window.location.href='<?= App::currentPath() . '?action=view&id=' . $user['id'] ?>'">
+                            <tr class="hover:bg-gray-50 transition cursor-pointer" onclick="window.location.href='<?= App::currentPath() . '/view?id=' . $user['id'] ?>'">
                                 <td class="p-2 border border-textPrimary text-textPrimary">#<?= ($entries['page']['from'] + $index) ?></td>
                                 <td class="p-2 border border-textPrimary text-textPrimary"><?= date('d M, Y', strtotime($user['created_at'])) ?></td>
                                 <td class="p-2 border border-textPrimary text-textPrimary">
                                     <img
                                         src="<?= Dir::getAsset(!empty($user['image']) ? 'uploads/' . $user['image'] : 'images/dummy-user-image.jpg') ?>"
                                         alt="Avatar"
-                                        class="w-12 h-12 rounded-full object-cover border border-textSecondary/20">
+                                        class="w-9 h-9 rounded-full object-cover border border-textSecondary/20">
                                 </td>
                                 <td class="p-2 border border-textPrimary text-textPrimary"><?= htmlspecialchars(ucwords($user['name'])) ?></td>
                                 <td class="p-2 border border-textPrimary text-textPrimary">@<?= htmlspecialchars($user['username']) ?></td>
@@ -285,7 +285,7 @@ if (($_GET['action'] ?? '') === 'export') {
                                 </td>
                                 <td class="p-2 border border-textPrimary text-textPrimary">
                                     <div class="flex items-center space-x-4">
-                                        <?= App::icon('edit', '?id=' . $user['id']) ?>
+                                        <?= App::icon('edit', App::currentPath() . '/manage?action=edit&id=' . $user['id']) ?>
                                         <?php if ($user['role'] !== 'superadmin'): ?>
                                             <?= App::icon('delete', '/action?task=user_delete&id=' . $user['id']) ?>
                                         <?php endif; ?>

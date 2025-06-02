@@ -5,6 +5,10 @@ if (isset($_POST['LoginSubmit'])) {
     $return_url = $return_url === 'auth/login' ? $_ENV['ROOT'] : $return_url;
     if ($user_in_db) {
         if (password_verify(ci($_POST['password']), $user_in_db['password'])) {
+            if (!(int)$user_in_db['is_active']) {
+                showMsg('warning', "! Sorry: " . ucfirst($user_in_db['name']) . ", your account is locked!", App::currentPath(true, true));
+                exit;
+            }
             if (isset($_POST['remember_me'])) {
                 $lifetime = 60 * 60 * 24 * 7;
                 if (session_status() === PHP_SESSION_ACTIVE) {

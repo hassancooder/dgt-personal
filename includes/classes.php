@@ -477,6 +477,41 @@ class Dir
         }
         return rmdir($dir);
     }
+    /**
+     * Upload multiple files to a specific directory
+     *
+     * @param string $folder Relative folder path (e.g., 'uploads/files')
+     * @param array $files Multiple files array like $_FILES['files']
+     * @return array List of uploaded file names (with extension)
+     */
+    public static function uploadFiles(string $folder, array $files): array
+    {
+        $uploadedFiles = [];
+        self::make($folder);
+
+        if (!is_array($files['name'])) {
+            $files = [
+                'name' => [$files['name']],
+                'type' => [$files['type']],
+                'tmp_name' => [$files['tmp_name']],
+                'error' => [$files['error']],
+                'size' => [$files['size']]
+            ];
+        }
+
+        $fileCount = count($files['name']);
+
+        for ($i = 0; $i < $fileCount; $i++) {
+            if (!is_uploaded_file($files['tmp_name'][$i])) continue;
+            $ext = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+            $random = uniqid('file_', true) . '.' . $ext;
+            $dest = self::toAbsolute($folder . '/' . $random);
+            if (file_exists($dest)) unlink($dest);
+            if (move_uploaded_file($files['tmp_name'][$i], $dest)) $uploadedFiles[] = $random;
+        }
+
+        return $uploadedFiles;
+    }
 }
 
 class Doc
@@ -595,6 +630,13 @@ class App
         $path = $isRelative ? implode('/', $segments) : getRoot() . implode('/', $segments);
         return $path;
     }
+    public static function parentPath($isRelative = false): string
+    {
+        $segments = SEGMENTS;
+        array_pop($segments);
+        $path = $isRelative ? implode('/', $segments) : getRoot() . implode('/', $segments);
+        return $path;
+    }
     public static function icon($type, $url): string
     {
         $icon = '';
@@ -623,7 +665,7 @@ class App
         $user = DB::fetch('users', ['id' => $_SESSION['user']['id']], 'one');
         if ($user) {
             // if ($user['role'] === 'superadmin') {
-                $user['allowed_routes'] = array_column(DB::con()->fetch('navbar', [], 'all'), 'slug');
+            $user['allowed_routes'] = array_column(DB::con()->fetch('navbar', [], 'all'), 'slug');
             // } else {
             //     $user['allowed_routes'] = jd($user['allowed_routes']);
             // }
