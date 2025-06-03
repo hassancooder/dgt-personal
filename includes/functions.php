@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/classes.php';
 
-$publicPaths = ['auth'];
+$publicPaths = ['auth', 'export'];
 $alertStyles = [
     'success' => [
         'icon' => 'ri-check-line',

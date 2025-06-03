@@ -9,7 +9,7 @@ if (file_exists(__DIR__ . '/../public/' . PAGE_TO_RENDER . '.php')) {
 } else {
     define('RENDER', __DIR__ . '/../public/' . PAGE_TO_RENDER . '/index.php');
 }
-$pageWithoutSidebar = (SEGMENTS[0] === 'auth' && SEGMENTS[1] === 'login') || (SEGMENTS[0] === 'auth' && SEGMENTS[1] === 'forget-password');
+$pageWithoutSidebar = (SEGMENTS[0] === 'auth' && SEGMENTS[1] === 'login') || (SEGMENTS[0] === 'auth' && SEGMENTS[1] === 'forget-password') || SEGMENTS[0] === 'export';
 if (App::currentUser()) {
     $color_theme = App::currentUser()['preferences']['color_theme'];
 } else {

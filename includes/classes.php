@@ -172,23 +172,43 @@ class DB
     {
         self::con();
 
-        $whereClause = '';
+        $whereParts = [];
         $params = [];
 
-        if ($where) {
-            $whereClause = 'WHERE ' . implode(' AND ', array_map(fn($k) => "$k = :$k", array_keys($where)));
-            $params = $where;
+        foreach ($where as $column => $value) {
+            if (is_array($value)) {
+                // build an IN clause for multiple values
+                $placeholders = [];
+                foreach ($value as $i => $v) {
+                    $paramKey = "{$column}_{$i}";
+                    $placeholders[] = ":$paramKey";
+                    $params[$paramKey] = $v;
+                }
+                $inList = implode(', ', $placeholders);
+                $whereParts[] = "$column IN ($inList)";
+            } else {
+                // single-value equality
+                $whereParts[] = "$column = :$column";
+                $params[$column] = $value;
+            }
+        }
+
+        $whereClause = '';
+        if (!empty($whereParts)) {
+            $whereClause = 'WHERE ' . implode(' AND ', $whereParts);
         }
 
         $sql = "SELECT * FROM $table $whereClause $customSql";
         $hash = self::generateQueryHash($sql, $params);
 
-        // 🔁 Cache check
+        // Check cache
         if (isset(self::$requests[$hash])) {
             $result = self::$requests[$hash];
 
             if ($fetchType === 'one') {
-                if (is_array($result)) $result['_source'] = 'cache';
+                if (is_array($result)) {
+                    $result['_source'] = 'cache';
+                }
             } else {
                 foreach ($result as &$row) {
                     $row['_source'] = 'cache';
@@ -198,15 +218,17 @@ class DB
             return $result;
         }
 
-        // 🧠 DB query
+        // Execute query
         $stmt = self::$pdo->prepare($sql);
         $stmt->execute($params);
 
         $result = self::fetchResult($stmt, $fetchType === 'one' ? 'one' : 'all');
 
-        // Add source markers
+        // Mark source as 'db'
         if ($fetchType === 'one') {
-            if (is_array($result)) $result['_source'] = 'db';
+            if (is_array($result)) {
+                $result['_source'] = 'db';
+            }
         } else {
             foreach ($result as &$row) {
                 $row['_source'] = 'db';
@@ -216,6 +238,7 @@ class DB
         self::$requests[$hash] = $result;
         return $result;
     }
+
 
     public static function query($sql, $params = [], $fetch = 'all')
     {
@@ -302,68 +325,102 @@ class DB
         $EPP = $_SESSION['user']['preferences']['entries_per_page'] ?? 10;
         $page = isset($filters['page']) ? max(1, (int)$filters['page']) : 1;
         $offset = ($page - 1) * $EPP;
+
         $showAll = isset($filters['show_all']) && $filters['show_all'] === '1';
-        $export = isset($filters['action']) && $filters['action'] === 'export';
-        $limit = !$showAll || !$export ? "LIMIT $offset, " . ($EPP + 1) : '';
-        $totalEntries = mysqli_fetch_assoc($conn->query("SELECT COUNT(*) as total FROM ($sql) AS subquery"))['total'];
-        $entries = mysqli_fetch_all($conn->query("$sql $order_by $limit"), MYSQLI_ASSOC);
+        $export  = isset($filters['action'])   && $filters['action'] === 'export';
+
+        // Apply LIMIT only when NOT show_all AND NOT export
+        $limit = (!$showAll && !$export)
+            ? "LIMIT $offset, " . ($EPP + 1)  // +1 to detect if there's a next page
+            : '';
+
+        // Total count (independent of LIMIT)
+        $totalEntries = mysqli_fetch_assoc(
+            $conn->query("SELECT COUNT(*) as total FROM ($sql) AS subquery")
+        )['total'];
+
+        // Fetch rows
+        $ymsql = "$sql $order_by $limit";
+        $entries = mysqli_fetch_all($conn->query($ymsql), MYSQLI_ASSOC);
+
+        // Pagination logic
         $hasNext = false;
-        if (!$showAll && count($entries) > $EPP) {
+        if (!$showAll && !$export && count($entries) > $EPP) {
             $hasNext = true;
-            array_pop($entries);
+            // Remove the extra one we fetched
+            $entries = array_slice($entries, 0, $EPP);
         }
-        $from = $showAll ? 1 : ($totalEntries > 0 ? $offset + 1 : 0);
-        $to   = $showAll ? $totalEntries : min($offset + count($entries), $totalEntries);
+
+        // "From" and "To" entry numbers
+        $from = $showAll
+            ? 1
+            : ($totalEntries > 0 ? $offset + 1 : 0);
+        $to = $showAll
+            ? $totalEntries
+            : min($offset + count($entries), $totalEntries);
+
+        // Pagination links (only if not showAll)
         $paginationLinks = [];
         if (!$showAll && $totalEntries > 0) {
             $startPage = max(1, $page - 2);
-            $endPage   = min($page + 2, ceil($totalEntries / $EPP));
+            $endPage   = min($page + 2, (int)ceil($totalEntries / $EPP));
+
             for ($i = $startPage; $i <= $endPage; $i++) {
                 $queryParams = $filters;
                 $queryParams['page'] = $i;
+
                 if ($showAll) {
                     $queryParams['show_all'] = '1';
                 }
+
                 $paginationLinks[] = [
                     'page'   => $i,
                     'url'    => App::currentPath() . '?' . http_build_query($queryParams),
-                    'active' => ($i == $page)
+                    'active' => ($i === $page),
                 ];
             }
         }
+
+        // Previous & Next URLs
         $prevURL = null;
         $nextURL = null;
         if (!$showAll) {
             if ($page > 1) {
                 $qp = $filters;
                 $qp['page'] = $page - 1;
-                $prevURL = App::currentPath() . '?' . http_build_query($qp);
+                if ($showAll) $qp['show_all'] = '1';
+                $prevURL = App::currentPath() . '?' . http_build_query(array_filter($qp));
             }
+
             if ($hasNext) {
                 $qp = $filters;
                 $qp['page'] = $page + 1;
-                $nextURL = App::currentPath() . '?' . http_build_query($qp);
+                if ($showAll) $qp['show_all'] = '1';
+                $nextURL = App::currentPath() . '?' . http_build_query(array_filter($qp));
             }
         }
+
+        // Return
         $info = [
-            'entries'       => $entries,
-            'entries_count' => count($entries),
-            'pagination'    => [
+            'entries'        => $entries,
+            'entries_count'  => count($entries),
+            'pagination'     => [
                 'current_page' => $page,
                 'per_page'     => $EPP,
                 'prev'         => $prevURL,
                 'next'         => $nextURL,
-                'links'        => $paginationLinks
+                'links'        => $paginationLinks,
             ],
-            'page'    => [
+            'page' => [
                 'from'  => $from,
                 'to'    => $to,
-                'total' => $totalEntries
+                'total' => $totalEntries,
             ],
-            'show_all' => $showAll,
-            'filters'  => $filters,
-            'toggle_url' => App::currentPath() . '?' . http_build_query($filters)
+            'show_all'    => $showAll,
+            'filters'     => $filters,
+            'toggle_url'  => App::currentPath() . '?' . http_build_query($filters),
         ];
+
         if (!$export) {
             return $info;
         } else {
@@ -533,6 +590,7 @@ class Doc
     public static function setTANDBC(array $segments, array $labels): void
     {
         $autoTitle = [];
+        define('PAGE_TITLES', $labels);
         $autoBC = ['<a href="' . $_ENV['ROOT'] . '"><i class="ri-home-5-line text-xl"></i></a>'];
         $pathAccumulator = '';
         foreach (array_reverse($segments) as $seg) {
@@ -599,6 +657,13 @@ class Doc
 
 class App
 {
+    private static string $secretKey;
+    public static function crypt_init(): void
+    {
+        if (!isset(self::$secretKey) || self::$secretKey === '') {
+            self::$secretKey = $_ENV['CRYPT_KEY'] ?? '';
+        }
+    }
     public static $defaultTheme = [
         'bgColor' => '#ffffff',
         'accent' => '#2563eb',
@@ -637,6 +702,17 @@ class App
         $path = $isRelative ? implode('/', $segments) : getRoot() . implode('/', $segments);
         return $path;
     }
+    public static function rootPath($isRelative = false)
+    {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443)
+            ? "https://"
+            : "http://";
+
+        $host = $_SERVER['HTTP_HOST'];
+        $root = $_ENV['ROOT'] ?? '/';
+        return $isRelative ? rtrim($root, '/') : rtrim($protocol . $host . $root, '/');
+    }
+
     public static function icon($type, $url): string
     {
         $icon = '';
@@ -647,12 +723,64 @@ class App
             case 'edit':
                 $icon = '<a href="' . $url . '" class="text-lg text-blue-600"><i class="ri-edit-line"></i></a>';
                 break;
+            case 'lock':
+                $icon = '<a href="' . $url . '" class="text-lg text-textPrimary"><i class="ri-lock-2-line"></i></a>';
+                break;
+            case 'unlock':
+                $icon = '<a href="' . $url . '" class="text-lg text-textPrimary"><i class="ri-lock-unlock-line"></i></a>';
+                break;
             default:
                 $icon = '<a href="' . $url . '" class="text-lg text-red-600">Icon Not Defined!</a>';
                 break;
         }
         return $icon;
     }
+
+    public static function encrypt(string $name): string
+    {
+        self::crypt_init();
+        $iv = random_bytes(12);
+        $ciphertext = openssl_encrypt(
+            $name,
+            'aes-256-gcm',
+            self::$secretKey,
+            OPENSSL_RAW_DATA,
+            $iv,
+            $tag,
+            "",
+            16
+        );
+        $payload = $iv . $tag . $ciphertext;
+        return rtrim(strtr(base64_encode($payload), '+/', '-_'), '=');
+    }
+
+    public static function decrypt(string $encrypted): string
+    {
+        self::crypt_init();
+        $base64 = strtr($encrypted, '-_', '+/');
+        $pad = 4 - (strlen($base64) % 4);
+        if ($pad < 4) $base64 .= str_repeat('=', $pad);
+        $payload = base64_decode($base64, true);
+        if ($payload === false) {
+            throw new RuntimeException("Invalid base64 input");
+        }
+        $iv = substr($payload, 0, 12);
+        $tag = substr($payload, 12, 16);
+        $ciphertext = substr($payload, 28);
+        $plaintext = openssl_decrypt(
+            $ciphertext,
+            'aes-256-gcm',
+            self::$secretKey,
+            OPENSSL_RAW_DATA,
+            $iv,
+            $tag
+        );
+        if ($plaintext === false) {
+            throw new RuntimeException("Decryption failed or data tampered");
+        }
+        return $plaintext;
+    }
+
     public static function currentUser(): ?array
     {
         if (!isset($_SESSION)) session_start();
@@ -669,7 +797,7 @@ class App
             // } else {
             //     $user['allowed_routes'] = jd($user['allowed_routes']);
             // }
-            $user['allowed_routes'] = [...$user['allowed_routes'], '', 'settings'];
+            $user['allowed_routes'] = [...$user['allowed_routes'], '', 'settings', 'action'];
             $user['preferences'] = jd($user['preferences'] ?? '[]');
             if (!isset($user['preferences']['color_theme'])) {
                 $user['preferences']['color_theme'] = self::$defaultTheme;
@@ -679,5 +807,206 @@ class App
             return null;
         }
     }
+    public static function sortByColumn(array $entries, string $keyColumn = 'id', ?string $valueColumn = null): array
+    {
+        $result = [];
+        foreach ($entries as $entry) {
+            if (!isset($entry[$keyColumn])) {
+                continue;
+            }
+            $key = $entry[$keyColumn];
+            if ($valueColumn !== null && isset($entry[$valueColumn])) {
+                $result[$key] = $entry[$valueColumn];
+            } else {
+                $result[$key] = $entry;
+            }
+        }
+        return $result;
+    }
+
     public static function setupPrintSystem($data) {}
+    public static function pageTop(array $entries, $customContent = null, array $options = [])
+    {
+        $options['add_button_roles'] = empty($options['add_button_roles']) ? ['admin', 'superadmin'] : $options['add_button_roles'];
+        $title =  PAGE_TITLES[SEGMENTS[count(SEGMENTS) - 1]];
+        $EPP = DB::fetch('static_types', ['type_for' => 'entries_per_page'], 'all');
+        $user_p = App::currentUser()['preferences'];
+        $user_epp = !empty($user_p['entries_per_page']) ? $user_p['entries_per_page'] : '10';
+        $newShowAll = $entries['show_all'] ? null : '1';
+        if ($newShowAll === null) {
+            unset($entries['filters']['show_all']);
+        } else {
+            $entries['filters']['show_all'] = '1';
+        }
+        $toggleUrl = App::currentPath() . (count($entries['filters']) ? ('?' . http_build_query($entries['filters'])) : '');
+?>
+
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+            <h1 class="text-3xl font-bold text-textPrimary"><?= $title; ?></h1>
+            <div class="flex items-center gap-2 mt-3 md:mt-0">
+                <!-- Search Form -->
+                <form method="GET" action="<?= App::currentPath() ?>" class="relative">
+                    <?php if ($entries['show_all']): ?>
+                        <input type="hidden" name="show_all" value="1">
+                    <?php endif; ?>
+                    <input
+                        type="text"
+                        name="<?= $options['searchForm']['name'] ?? 'name' ?>"
+                        id="<?= $options['searchForm']['id'] ?? 'name' ?>"
+                        value="<?= htmlspecialchars($entries['filters'][$options['searchForm']['name'] ?? 'name'] ?? '') ?>"
+                        placeholder="<?= $options['searchForm']['placeholder'] ?? 'Search Name...' ?>"
+                        class="pl-10 pr-2 py-2 border border-textSecondary/30 rounded-lg text-sm focus:outline-none focus:ring-1 focus:!ring-accent transition w-52">
+                    <i class="ri-filter-line text-xl cursor-pointer text-textSecondary/80 absolute left-3 top-1.5" @click="openFilters = true"></i>
+                </form>
+
+                <!-- Reset Filters -->
+                <?php if (!empty($_GET) && !in_array($_GET[0] ?? '', ['page', 'export'])): ?>
+                    <a href="<?= App::currentPath() ?>" class="text-textSecondary hover:text-red-600 transition transform hover:rotate-90">
+                        <i class="ri-loop-left-line text-red-600 text-2xl"></i>
+                    </a>
+                <?php endif; ?>
+
+                <!-- Add Button -->
+                <?php if (in_array($_SESSION['user']['role'], $options['add_button_roles'])) { ?>
+                    <a href="<?= App::currentPath() . '/manage?action=add-new' ?>" class="!bg-accent !text-bg rounded-lg hover:bg-accent/90 transition text-sm px-3 py-1 font-medium">
+                        <i class="ri-add-line text-lg !text-bg mr-1"></i> Add
+                    </a>
+                <?php } ?>
+                <!-- Export Button -->
+                <a href="<?= $entries['toggle_url'] . '&action=export'; ?>" class="!bg-textPrimary !text-bg rounded-lg hover:!bg-textPrimary/90 transition text-sm px-3 py-1 font-medium">
+                    <i class="ri-upload-2-line text-xl !text-bg"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Info & Pagination -->
+        <div class="flex flex-col-reverse gap-2 md:flex-row justify-between items-start md:items-center mb-4 space-y-2 md:space-y-0">
+            <div class="text-sm text-textPrimary">
+                Showing <?= $entries['page']['from'] ?> to <?= $entries['page']['to'] ?> of <?= $entries['page']['total'] ?> entries
+            </div>
+
+            <div class="flex flex-col-reverse md:flex-row gap-2">
+                <!-- Show All Toggle -->
+                <div class="flex items-center space-x-1">
+                    <input
+                        type="checkbox"
+                        id="showAllToggle"
+                        class="form-checkbox h-5 w-5 text-accent transition duration-150"
+                        <?= $entries['show_all'] ? 'checked' : '' ?>
+                        onclick="window.location.href='<?= $toggleUrl ?>'">
+                    <label for="showAllToggle" class="text-textPrimary text-sm font-medium">Show All</label>
+                </div>
+
+                <?php if (!$entries['show_all']): ?>
+                    <!-- Entries per page -->
+                    <form action="<?= App::rootPath(true) . '/action'; ?>" method="POST" class="flex items-center space-x-0">
+                        <input type="hidden" name="return_url" value="<?= App::currentPath(true); ?>" />
+                        <select
+                            name="entries_per_page"
+                            id="entries_per_page"
+                            class="px-3 py-2 border border-textSecondary/30 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-accent"
+                            onchange="this.form.submit()">
+                            <?php foreach ($EPP as $s_epp): ?>
+                                <option value="<?= $s_epp['value1'] ?>" <?= $user_epp === $s_epp['value1'] ? 'selected' : '' ?>>
+                                    <?= $s_epp['name'] ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </form>
+
+                    <!-- Pagination -->
+                    <div class="flex items-center space-x-1">
+                        <?php if ($entries['pagination']['prev']): ?>
+                            <a href="<?= $entries['pagination']['prev'] ?>" class="px-1 py-2 bg-bg border border-textSecondary/30 rounded hover:bg-textSecondary/10 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-textSecondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </a>
+                        <?php endif; ?>
+
+                        <?php foreach ($entries['pagination']['links'] as $link): ?>
+                            <?php if ($link['active']): ?>
+                                <span class="px-3 py-2 bg-accent text-bg rounded border"><?= $link['page'] ?></span>
+                            <?php else: ?>
+                                <a href="<?= $link['url'] ?>" class="px-2.5 py-2 bg-bg border border-textSecondary/30 rounded hover:bg-textSecondary/10 transition">
+                                    <?= $link['page'] ?>
+                                </a>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+
+                        <?php if ($entries['pagination']['next']): ?>
+                            <a href="<?= $entries['pagination']['next'] ?>" class="px-1 py-2 bg-bg border border-textSecondary/30 rounded hover:bg-textSecondary/10 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-textSecondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                <?php else: ?>
+                    <span class="text-textSecondary italic">All entries shown</span>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div
+            x-show="openFilters"
+            x-cloak
+            @keydown.escape.window="openFilters = false"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-textPrimary/70 bg-opacity-50">
+            <div class="bg-bg w-full max-w-md rounded-lg shadow-lg overflow-y-auto">
+                <!-- Modal Header -->
+                <div class="flex justify-between items-center p-2 border border-textPrimary text-textPrimary">
+                    <h3 class="text-xl font-semibold text-textPrimary">Apply Filters</h3>
+                    <button @click="openFilters = false" class="text-textSecondary hover:text-textSecondary transition focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <form method="GET" class="px-3 py-3 space-y-2">
+                    <?php if ($entries['show_all']): ?>
+                        <input type="hidden" name="show_all" value="1">
+                    <?php endif; ?>
+                    <?php
+                    if (is_callable($customContent)) {
+                        call_user_func($customContent, $entries);
+                    }
+                    ?>
+                    <!-- Action Buttons -->
+                    <div class="flex justify-end space-x-4 pt-4 border-t border-textSecondary/20">
+                        <button
+                            type="button"
+                            @click="openFilters = false"
+                            class="px-4 py-2 text-sm font-medium !text-textPrimary !bg-textSecondary/10 rounded-lg hover:!bg-textSecondary/20 transition focus:outline-none">
+                            Cancel
+                        </button>
+                        <button
+                            type="submit"
+                            class="px-4 py-2 text-sm font-medium !text-bg !bg-accent rounded-lg hover:!bg-accent/90 transition focus:outline-none">
+                            Apply
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+<?php
+    }
+    public static function buildTree(array $elements, int $parentId = 0): array
+    {
+        $branch = [];
+
+        foreach ($elements as $element) {
+            if ($element['parent_id'] == $parentId) { //line no 999
+                $children = self::buildTree($elements, $element['id']);
+                if ($children) {
+                    $element['children'] = $children;
+                } else {
+                    $element['children'] = [];
+                }
+                $branch[] = $element;
+            }
+        }
+
+        return $branch;
+    }
 }

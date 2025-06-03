@@ -121,3 +121,82 @@
 [2025-06-02 07:36:17] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\view.php on line 62
 [2025-06-02 07:36:32] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\view.php on line 62
 [2025-06-02 08:53:16] UNCAUGHT EXCEPTION: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'admin' for key 'username' in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 139
+[2025-06-02 17:14:56] UNCAUGHT EXCEPTION: Unknown column 'created_at' in 'order clause' in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 309
+[2025-06-02 17:54:03] UNCAUGHT EXCEPTION: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dgt.static_type' doesn't exist in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202
+[2025-06-02 17:55:02] UNCAUGHT EXCEPTION: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dgt.static_type' doesn't exist in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202
+[2025-06-02 17:55:13] UNCAUGHT EXCEPTION: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dgt.static_type' doesn't exist in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202
+[2025-06-02 17:55:33] UNCAUGHT EXCEPTION: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dgt.static_type' doesn't exist in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202
+[2025-06-02 17:55:41] UNCAUGHT EXCEPTION: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dgt.static_type' doesn't exist in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 202
+[2025-06-02 18:03:33] ERROR [2]: Undefined array key "role" in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\index.php on line 240
+[2025-06-02 18:08:49] ERROR [2]: Array to string conversion in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 203
+[2025-06-02 18:11:39] UNCAUGHT EXCEPTION: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'SMB01' for key 'code' in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 139
+[2025-06-02 18:17:00] UNCAUGHT EXCEPTION: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY' in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 139
+[2025-06-02 19:30:13] UNCAUGHT EXCEPTION: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY' in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 139
+[2025-06-02 21:59:41] ERROR [2]: Undefined array key "sr" in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 293
+[2025-06-02 21:59:59] ERROR [2]: Undefined array key 0 in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 308
+[2025-06-02 22:01:12] UNCAUGHT EXCEPTION: Unknown column 'sr' in 'order clause' in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 332
+[2025-06-02 22:21:53] ERROR [2]: Undefined variable $index in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 293
+[2025-06-02 22:42:21] ERROR [2]: Trying to access array offset on value of type null in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 5
+[2025-06-03 07:23:17] UNCAUGHT EXCEPTION: Access to undeclared static property App::$entries in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 818
+[2025-06-03 07:27:09] UNCAUGHT EXCEPTION: Too few arguments to function App::pageTop(), 0 passed in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\index.php on line 32 and at least 1 expected in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 818
+[2025-06-03 07:27:25] UNCAUGHT EXCEPTION: Unsupported operand types: array - int in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 819
+[2025-06-03 07:32:06] UNCAUGHT EXCEPTION: Call to undefined method App::getRoot() in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 889
+[2025-06-03 07:37:25] ERROR [2]: Undefined array key "return_url" in E:\InstalledSoftwares\xampp\htdocs\public\action\index.php on line 12
+[2025-06-03 07:40:08] UNCAUGHT EXCEPTION: Call to undefined method App::toAbsolute() in E:\InstalledSoftwares\xampp\htdocs\public\action\index.php on line 12
+[2025-06-03 07:42:04] UNCAUGHT EXCEPTION: syntax error, unexpected token "." in E:\InstalledSoftwares\xampp\htdocs\public\action\index.php on line 12
+[2025-06-03 07:46:57] UNCAUGHT EXCEPTION: syntax error, unexpected token "." in E:\InstalledSoftwares\xampp\htdocs\public\action\index.php on line 12
+[2025-06-03 08:04:31] UNCAUGHT EXCEPTION: Call to undefined function rtime() in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 714
+[2025-06-03 08:23:45] UNCAUGHT EXCEPTION: Unclosed '{' on line 35 in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 182
+[2025-06-03 08:23:57] UNCAUGHT EXCEPTION: Unclosed '{' on line 35 in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 182
+[2025-06-03 08:25:31] UNCAUGHT EXCEPTION: Unclosed '{' on line 35 in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 182
+[2025-06-03 08:26:11] UNCAUGHT EXCEPTION: Unclosed '{' on line 35 in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 182
+[2025-06-03 08:26:31] UNCAUGHT EXCEPTION: Unclosed '{' on line 35 in E:\InstalledSoftwares\xampp\htdocs\public\entries\users\index.php on line 182
+[2025-06-03 08:27:06] ERROR [2]: Undefined variable $customContent in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 968
+[2025-06-03 08:55:12] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 830
+[2025-06-03 08:55:58] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 830
+[2025-06-03 09:05:11] ERROR [2]: openssl_decrypt(): Setting of IV length for AEAD mode failed in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 777
+[2025-06-03 09:06:09] ERROR [2]: openssl_decrypt(): Setting of IV length for AEAD mode failed in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 777
+[2025-06-03 09:06:46] ERROR [2]: openssl_decrypt(): Setting of IV length for AEAD mode failed in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 777
+[2025-06-03 09:16:56] ERROR [2]: Undefined array key "usernme" in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\manage.php on line 40
+[2025-06-03 09:17:05] ERROR [2]: Undefined array key "usernme" in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\manage.php on line 40
+[2025-06-03 09:18:32] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 831
+[2025-06-03 09:19:46] UNCAUGHT EXCEPTION: json_decode(): Argument #1 ($json) must be of type string, array given in E:\InstalledSoftwares\xampp\htdocs\includes\functions.php on line 266
+[2025-06-03 09:23:47] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 831
+[2025-06-03 09:24:14] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 831
+[2025-06-03 14:10:44] UNCAUGHT EXCEPTION: Invalid base64 input in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 765
+[2025-06-03 14:10:57] UNCAUGHT EXCEPTION: Invalid base64 input in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 765
+[2025-06-03 14:15:08] UNCAUGHT EXCEPTION: Invalid base64 input in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 765
+[2025-06-03 14:15:23] UNCAUGHT EXCEPTION: Invalid base64 input in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 765
+[2025-06-03 14:41:27] ERROR [2]: Undefined array key "parent_id" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 999
+[2025-06-03 14:42:04] ERROR [2]: Undefined array key "parent_id" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 999
+[2025-06-03 14:59:05] ERROR [2]: Undefined array key "parent_id" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 999
+[2025-06-03 15:00:34] ERROR [2]: Undefined array key "parent_id" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 1000
+[2025-06-03 15:00:58] ERROR [2]: Undefined array key "parent_id" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 1000
+[2025-06-03 15:01:26] ERROR [2]: Undefined array key "parent_id" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 1000
+[2025-06-03 15:01:46] ERROR [2]: Undefined array key "parent_id" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 1000
+[2025-06-03 15:02:38] ERROR [2]: Undefined array key "parent_id" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 1000
+[2025-06-03 15:02:53] ERROR [2]: Undefined array key "show_all" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 835
+[2025-06-03 15:48:57] ERROR [2]: Undefined array key "childern" in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\index.php on line 109
+[2025-06-03 15:49:12] ERROR [2]: Undefined array key "children" in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\index.php on line 109
+[2025-06-03 17:05:26] UNCAUGHT EXCEPTION: Unmatched '}' in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\index.php on line 131
+[2025-06-03 17:05:51] ERROR [2]: Undefined variable $user in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\index.php on line 118
+[2025-06-03 17:06:29] UNCAUGHT EXCEPTION: Invalid base64 input in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 765
+[2025-06-03 17:15:56] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 831
+[2025-06-03 17:16:26] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 831
+[2025-06-03 17:17:39] ERROR [2]: Undefined variable $default_img in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\view.php on line 27
+[2025-06-03 18:07:11] ERROR [2]: Undefined variable $default_img in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\view.php on line 27
+[2025-06-03 18:08:23] ERROR [2]: Undefined array key "role" in E:\InstalledSoftwares\xampp\htdocs\public\entries\branches\view.php on line 42
+[2025-06-03 18:37:43] ERROR [2]: Undefined array key "manage" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 831
+[2025-06-03 18:48:07] ERROR [2]: Undefined variable $good in E:\InstalledSoftwares\xampp\htdocs\public\entries\goods\manage.php on line 35
+[2025-06-03 19:50:16] ERROR [2]: Undefined array key "variations_count" in E:\InstalledSoftwares\xampp\htdocs\public\entries\goods\index.php on line 145
+[2025-06-03 19:53:29] ERROR [2]: Undefined variable $branch in E:\InstalledSoftwares\xampp\htdocs\public\entries\goods\index.php on line 174
+[2025-06-03 19:54:07] UNCAUGHT EXCEPTION: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dgt.good' doesn't exist in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 222
+[2025-06-03 20:52:33] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 831
+[2025-06-03 20:52:54] ERROR [2]: Undefined array key "variations" in E:\InstalledSoftwares\xampp\htdocs\public\entries\goods\action.php on line 31
+[2025-06-03 20:54:09] ERROR [2]: Undefined array key "variations" in E:\InstalledSoftwares\xampp\htdocs\public\entries\goods\action.php on line 32
+[2025-06-03 20:54:42] UNCAUGHT EXCEPTION: Unsupported operand types: string + int in E:\InstalledSoftwares\xampp\htdocs\public\entries\goods\index.php on line 159
+[2025-06-03 20:56:25] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 831
+[2025-06-03 21:05:08] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 831
+[2025-06-03 21:05:24] ERROR [2]: Undefined array key "variations" in E:\InstalledSoftwares\xampp\htdocs\public\entries\goods\action.php on line 78
+[2025-06-03 21:05:59] ERROR [2]: Trying to access array offset on value of type bool in E:\InstalledSoftwares\xampp\htdocs\public\entries\goods\action.php on line 78
+[2025-06-03 21:06:33] ERROR [2]: Undefined array key "view" in E:\InstalledSoftwares\xampp\htdocs\includes\classes.php on line 831

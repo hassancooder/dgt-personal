@@ -1,22 +1,4 @@
 <?php
-if (isset($_POST['entries_per_page'])) {
-    $userId = $_SESSION['user']['id'];
-    $user = DB::fetch('users', ['id' => $userId], 'one');
-    if ($user) {
-        $preferences = jd($user['preferences'] ?? '[]');
-        $preferences['entries_per_page'] = ci($_POST['entries_per_page']);
-        $updatedPreferences = json_encode($preferences);
-        $update = DB::update('users', ['preferences' => $updatedPreferences], ['id' => $userId]);
-        if ($update) {
-            $_SESSION['user']['preferences'] = $preferences;
-            showMsg('success', 'Entries Per Page saved successfully!', App::currentPath(true, true));
-        } else {
-            showMsg('error', 'Failed to update Entries Per Page.', App::currentPath(true, true));
-        }
-    } else {
-        showMsg('error', 'User not found!', App::currentPath(true, true));
-    }
-}
 if (isset($_POST['userSubmit'])) {
 
     $data = [
@@ -27,12 +9,28 @@ if (isset($_POST['userSubmit'])) {
         'allowed_routes' => je(explode(',', $_POST['allowed_routes'])),
     ];
     if (!empty($_POST['password'])) {
-        $data['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $data['password'] = App::encrypt($_POST['password']);
     }
     if (!empty($_FILES['profile_image']['name'])) {
         $data['image'] = dir::uploadFiles('assets/uploads', $_FILES['profile_image'])[0];
     }
     $result = !empty($_POST['id']) ? DB::update('users', $data, ['id' => $_POST['id']]) : DB::insert('users', $data);
+    if ($result) {
+        showMsg('success', 'Success!', App::currentPath(true, true));
+    } else {
+        showMsg('error', 'Failed!', App::currentPath(true, true));
+    }
+}
+if (isset($_GET['task']) && ($_GET['task'] === 'user_lock' || $_GET['task'] === 'user_unlock')) {
+    $result = DB::update('users', ['is_active' => ($_GET['task'] === 'user_lock' ? 0 : 1)], ['id' => $_GET['id']]);
+    if ($result) {
+        showMsg('success', 'Success!', App::currentPath(true, true));
+    } else {
+        showMsg('error', 'Failed!', App::currentPath(true, true));
+    }
+}
+if (isset($_GET['task']) && $_GET['task'] === 'user_delete') {
+    $result = DB::delete('users', ['id' => $_GET['id']]);
     if ($result) {
         showMsg('success', 'Success!', App::currentPath(true, true));
     } else {

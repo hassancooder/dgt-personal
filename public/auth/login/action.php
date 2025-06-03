@@ -4,7 +4,7 @@ if (isset($_POST['LoginSubmit'])) {
     $return_url = !empty($_SESSION['return_url']) ? $_SESSION['return_url'] : '';
     $return_url = $return_url === 'auth/login' ? $_ENV['ROOT'] : $return_url;
     if ($user_in_db) {
-        if (password_verify(ci($_POST['password']), $user_in_db['password'])) {
+        if ($_POST['password'] === App::decrypt($user_in_db['password'])) {
             if (!(int)$user_in_db['is_active']) {
                 showMsg('warning', "! Sorry: " . ucfirst($user_in_db['name']) . ", your account is locked!", App::currentPath(true, true));
                 exit;
